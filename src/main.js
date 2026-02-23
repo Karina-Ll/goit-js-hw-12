@@ -44,9 +44,13 @@ form.addEventListener('submit', async event => {
 
     createGallery(data.hits);
 
-    if (totalHits > 15) {
+    if (totalHits <= 15) {
+      hideLoadMoreButton();
+      iziToast.info({ message: "We're sorry, but you've reached the end of search results." });
+    } else {
       showLoadMoreButton();
     }
+    
   } catch (error) {
     iziToast.error({ message: 'Something went wrong!' });
   } finally {
